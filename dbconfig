@@ -1,0 +1,11 @@
+<?php
+$host = "localhost";
+$user = "root";
+$password = "dbpass";
+$datbase = "db";
+mysqli_connect($host, $user, $password) or die(mysqli_error($con));
+$con = mysqli_connect($host, $user, $password) or die(mysqli_error($con));
+mysqli_select_db($con, $datbase);
+ $sql_query = "use $datbase";
+ mysqli_query($con, $sql_query);
+?>
