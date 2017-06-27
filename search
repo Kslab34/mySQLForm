@@ -1,0 +1,76 @@
+<?php
+include_once 'dbconfig.php';
+?>
+<!--html xmlns="http://www.w3.org/1999/xhtml"-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>MySQL Form</title>
+        <!--link rel="stylesheet" href="style.css" type="text/css" /-->
+    </head>
+    <body>
+        <center>
+
+            <div id="body">
+                <div id="content">
+                    <table align="center">
+                        <tr>
+                            <!--th colspan="5"><a href="add_data.php">add data here.</a></th-->
+                        </tr>
+                         <?php
+                       $sql_query = "SELECT * FROM FamilyAndFriends;";
+                        echo "We are in search pre query";
+                        echo $sql_query;
+                       // $sql_query = "describe FamilyAndFriends;";
+                        $result_set = mysqli_query($con, $sql_query) or die (mysqli_error($con));
+                        echo $result_set;
+                        print_r($result_set);
+                        ?>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th>City Name</th>
+                        <th>State Name</th>
+                        <th>Zip Code</th>
+                        <th>Birth Date</th>
+                        <th>username</th>
+                        <th>password</th>
+                        <th>gender</th>
+                        <th>relationship</th>
+                        <th colspan="2">Operations</th>
+                        </tr>
+                        <?php
+                       $sql_query = "SELECT * FROM FamilyAndFriends;";
+                        echo "We are in search pre query";
+                        echo $sql_query;
+                       // $sql_query = "describe FamilyAndFriends;";
+                        $result_set = mysqli_query($con, $sql_query);
+                        print_r($result_set);
+                        while (mysqli_fetch_row($result_set)) {
+                            ?>
+                            <tr>
+                                <td><?php echo $row[0]; ?></td>
+                                <td><?php echo $row[1]; ?></td>
+                                <!--td><?php //echo $row[3]; ?></td>
+                                <td><?php //echo $row[4]; ?></td>
+                                <td><?php //echo $row[5]; ?></td>
+                                <td><?php //echo $row[6]; ?></td>
+                                <td><?php //echo $row[7]; ?></td>
+                                <td><?php //echo $row[8]; ?></td>
+                                <td><?php //echo $row[9]; ?></td>
+                                <td><?php //echo $row[10]; ?></td>
+                                <td><?php //echo $row[11]; ?></td-->
+
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                    </table>
+                </div>
+            </div>
+
+        </center>
+    </body>
+</html>
+
