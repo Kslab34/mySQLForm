@@ -1,0 +1,130 @@
+<?php
+include_once 'dbconfig.php';
+
+if (isset($_GET['edit_id'])) {
+    echo "We are in isset for get edit_id";
+    $sql_query = "SELECT * FROM FamilyAndFriends WHERE username=" . $_GET['edit_id'].";";
+    $result_set = mysqli_query($con, $sql_query) or die();
+    $fetched_row = mysqli_fetch_array($result_set);
+}
+
+if (isset($_POST['btn-update'])) {
+    echo "We are in isset for btn-update";
+// variables for input data
+    $first_name = $_POST['first_name'];
+    $phone_number = $_POST['phone_number'];
+    $address = $_POST['address'];
+    $city_name = $_POST['city_name'];
+    $state_name = $_POST['state_name'];
+    $zip_code = $_POST['zip_code'];
+    $birth_date = $_POST['birth_date'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $gender = $_POST['gender'];
+    $relation = $_POST['relation'];
+// variables for input data
+// sql query for update data into database
+    $sql_query = "UPDATE FamilyAndFriends SET 'FirstName='$first_name',LastName='$last_name',PhoneNumber='$phone_number',Address='$address'City='$city_name',State='$state_name',Zip='$zip_code',BirthDate='$birth_date',username='$username',password='$password',gender='$gender',relationship='$relation' WHERE username='" . $_GET['edit_id'].";";
+    mysqli_query($con, $sql_query);
+    $message = "FamilyAndFriends Updated Successfully";
+// sql query for update data into database
+}
+?>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>MySQL Form</title>
+        <link rel="stylesheet" href="style.css" type="text/css" />
+        <script type="text/javascript">
+//   <!--
+//      // Form validation code will come here.
+//      function validate()
+//      {
+//      
+//         if( document.myForm.Name.value == "" )
+//         {
+//            alert( "Please provide your name!" );
+//            document.myForm.Name.focus() ;
+//            return false;
+//         }
+//         
+//         if( document.myForm.EMail.value == "" )
+//         {
+//            alert( "Please provide your Email!" );
+//            document.myForm.EMail.focus() ;
+//            return false;
+//         }
+//         
+//         if( document.myForm.Zip.value == "" ||
+//         isNaN( document.myForm.Zip.value ) ||
+//         document.myForm.Zip.value.length != 5 )
+//         {
+//            alert( "Please provide a zip in the format #####." );
+//            document.myForm.Zip.focus() ;
+//            return false;
+//         }
+//         
+//         if( document.myForm.Country.value == "-1" )
+//         {
+//            alert( "Please provide your country!" );
+//            return false;
+//         }
+//         return( true );
+//      }
+//   //-->
+</script>
+    </head>
+    <body>
+    <center>
+        <div class="message"><?php
+            if (isset($message)) {
+                echo $message;
+            }
+            ?></div>
+        <div id="body">
+            <div id="content">
+                <form method="post"><
+                    <table align="center">
+                        <tr>
+                            <td><input type="text" name="first_name" placeholder="First Name" value="<?php echo $fetched_row['FirstName']; ?>" required /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="last_name" placeholder="Last Name" value="<?php echo $fetched_row['LastName']; ?>" required /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="city_name" placeholder="City" value="<?php echo $fetched_row['City']; ?>" required /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="state_name" placeholder="State" value="<?php echo $fetched_row['State']; ?>" required /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="zip_code" placeholder="Zip" value="<?php echo $fetched_row['Zip']; ?>" required /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name=birth_date placeholder="BirthDate" value="<?php echo $fetched_row['BirthDate']; ?>" required /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="username" placeholder="username" value="<?php echo $fetched_row['username']; ?>" required /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="password" placeholder="password" value="<?php echo $fetched_row['password']; ?>" required /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="gender" placeholder="gender" value="<?php echo $fetched_row['gender']; ?>" required /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="relation" placeholder="relation" value="<?php echo $fetched_row['relationship']; ?>" required /></td>
+                        </tr>
+                        <tr>    <tr>
+                            <td>
+                                <button type="submit" name="btn-update"><strong>UPDATE</strong></button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+    </center>
+</body>
